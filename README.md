@@ -1,3 +1,3 @@
 # docker_handson
 # Installing dockers
-# Build an image and push it to gogle cloud
+# Build an image and push it to google cloud
