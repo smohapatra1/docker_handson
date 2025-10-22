@@ -14,7 +14,7 @@ RUN apt-get update  && \
 
 #Go to working Dir
 #WORKDIR /app
-CMD ["/bin/bash"]
+CMD ["ubuntu"]
 EOF
 
 echo "Building docker image"
@@ -22,7 +22,7 @@ sudo docker build -t git_in_docker .
 echo "Checking the images"
 sudo docker image ls
 echo "Starting the conatiner with above image"
-sudo docker container run git_in_docker
+sudo docker run -d git_in_docker tail -f /dev/null
 sleep 2
 echo "Checking the docker processes"
 sudo docker ps -a
@@ -32,4 +32,8 @@ echo "Starting the container"
 sudo docker container start $id
 echo "Checking the container status"
 sudo docker ps -a
-
+echo "Logging into container"
+sudo docker exec -it $id  /bin/bash
+uptime=$(uptime)
+echo "System uptime = $uptime"
+sudo docker container stop $id
